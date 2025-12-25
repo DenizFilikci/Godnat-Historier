@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Godnat Historier - Mørkets Fortællinger</title>
+    <!-- Google AdSense Code -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2451374090541637"
+     crossorigin="anonymous"></script>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Creepster&family=EB+Garamond:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cursor-x: 50%;
+            --cursor-y: 50%;
+        }
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            margin: 0;
+            cursor: none; /* Hide cursor to use flashlight */
+        }
+        @media (max-width: 768px) {
+            body { cursor: auto; }
+        }
+        .font-spooky {
+            font-family: 'Creepster', cursive;
+        }
+        .glass {
+            background: rgba(15, 15, 25, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 0, 0, 0.1);
+        }
+
+        /* Flashlight Effect */
+        .flashlight {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 100;
+            background: radial-gradient(
+                circle 250px at var(--cursor-x) var(--cursor-y),
+                transparent 0%,
+                rgba(0, 0, 0, 0.95) 100%
+            );
+        }
+
+        /* Lightning Flash */
+        @keyframes lightning {
+            0%, 95%, 98% { background-color: transparent; }
+            96%, 99% { background-color: rgba(255, 255, 255, 0.1); }
+        }
+        .lightning-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 90;
+            pointer-events: none;
+            animation: lightning 8s infinite;
+        }
+
+        /* Aggressive Glitch */
+        @keyframes glitch-heavy {
+            0% { clip-path: inset(40% 0 61% 0); transform: translate(-10px, 5px); }
+            20% { clip-path: inset(92% 0 1% 0); transform: translate(10px, -5px); }
+            40% { clip-path: inset(43% 0 1% 0); transform: translate(-5px, 10px); }
+            60% { clip-path: inset(25% 0 58% 0); transform: translate(5px, -10px); }
+            80% { clip-path: inset(54% 0 7% 0); transform: translate(-10px, 5px); }
+            100% { clip-path: inset(58% 0 43% 0); transform: translate(10px, -5px); }
+        }
+        .glitch-active {
+            animation: glitch-heavy 0.2s infinite;
+            color: #ff0000;
+        }
+
+        /* Noise Overlay */
+        .noise-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 101;
+            opacity: 0.08;
+            pointer-events: none;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+    </style>
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.2.3",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "@google/genai": "https://esm.sh/@google/genai@^1.34.0"
+  }
+}
+</script>
+</head>
+<body>
+    <div class="flashlight"></div>
+    <div class="lightning-overlay"></div>
+    <div id="root"></div>
+    <div class="noise-overlay"></div>
+    <script>
+        document.addEventListener('mousemove', e => {
+            document.documentElement.style.setProperty('--cursor-x', e.clientX + 'px');
+            document.documentElement.style.setProperty('--cursor-y', e.clientY + 'px');
+        });
+        document.addEventListener('touchmove', e => {
+            document.documentElement.style.setProperty('--cursor-x', e.touches[0].clientX + 'px');
+            document.documentElement.style.setProperty('--cursor-y', e.touches[0].clientY + 'px');
+        });
+    </script>
+</body>
+</html>

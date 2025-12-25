@@ -1,0 +1,7 @@
+{
+  "name": "Godnat Historier",
+  "description": "En atmosfærisk app, der genererer skræmmende og fængslende godnathistorier baseret på dine valgte emner ved hjælp af avanceret AI.",
+  "requestFramePermissions": [
+    "microphone"
+  ]
+}
